@@ -10,6 +10,7 @@ Gem::Specification.new do |spec|
     spec.summary       = %q{The CLIPS engine reimplemented in Ruby}
     spec.description   = %q{The C Language Integrated Production System (CLIPS), but in Ruby}
     spec.homepage      = "http://github.com/bfoz/clips-ruby"
+    spec.license       = "BSD"
 
     spec.files         = `git ls-files -z`.split("\x0").reject do |f|
         f.match(%r{^(test|spec|features)/})
