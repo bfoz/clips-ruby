@@ -1,3 +1,4 @@
 --format documentation
 --color
---require spec_helper
+--require test_helper
+-I test
