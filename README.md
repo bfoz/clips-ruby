@@ -23,6 +23,24 @@ clips.facts	# => #<Set: {["foo"], ["bar"]}>
 
 Facts are represented by Arrays, and Rules are instances of the Rule class. Rule names can be given as Symbols or Strings, and are converted to Symbols internally.
 
+## Default Facts
+
+Named sets of default facts can be added to the engine. When `reset` is called, the default facts are asserted as facts.
+
+```ruby
+clips.default_facts['my_defaults'] = Set[['foo'], ['bar']]
+clips.facts	# => #<Set: {}>
+...
+clips.reset
+clips.facts	# => #<Set: {["foo"], ["bar"]}>
+```
+
+To remove a set of default facts, use the normal Hash `delete` method.
+
+```ruby
+clips.default_facts.delete('my_defaults')
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:

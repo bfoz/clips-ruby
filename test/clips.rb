@@ -87,6 +87,45 @@ RSpec.describe CLIPS do
 	    subject.clear
 	    expect(subject.rules).to be_empty
 	end
+
+	it 'must delete all default facts' do
+	    subject.default_facts['facts'] = Set[['foo'], ['bar']]
+	    subject.clear
+	    expect(subject.default_facts).to be_empty
+	end
+    end
+
+    context 'when resetting' do
+	it 'must delete all facts' do
+	    subject.add("foo")
+	    subject.add("bar")
+
+	    subject.reset
+	    expect(subject.facts).to be_empty
+	end
+
+	it 'must delete all activations' do
+	    subject.add("foo")
+	    subject.add("bar")
+
+	    subject.reset
+	    expect(subject.activations).to be_empty
+	end
+
+	it 'must not delete rules' do
+	    subject.add :rule, CLIPS::Rule.new
+	    expect(subject.rules).not_to be_empty
+
+	    subject.reset
+	    expect(subject.rules).not_to be_empty
+	end
+
+	it 'must instantiate the default facts' do
+	    subject.default_facts['facts'] = Set[['foo'], ['bar']]
+	    subject.reset
+	    expect(subject.facts).to eq(Set[['foo'], ['bar']])
+	    expect(subject.default_facts).to eq({'facts' => Set[['foo'], ['bar']]})
+	end
     end
 
     context 'when retracting a fact' do

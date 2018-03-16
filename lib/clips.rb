@@ -9,6 +9,9 @@ class CLIPS
     # @return [Set]	The Rules waiting to be processed
     attr_reader :agenda
 
+    # @return [Hash]	The set of facts that will be instantiated on each reset
+    attr_reader :default_facts
+
     # @return [Set]	Just the Facts
     attr_reader :facts
 
@@ -18,6 +21,7 @@ class CLIPS
     def initialize
 	@activations = Set.new
 	@agenda = Set.new
+	@default_facts = Hash.new
 	@facts = Set.new
 	@rules = Hash.new
     end
@@ -47,6 +51,7 @@ class CLIPS
     def clear
 	self.activations.clear
 	self.agenda.clear
+	self.default_facts.clear
 	self.facts.clear
 	self.rules.clear
 	self
@@ -58,6 +63,20 @@ class CLIPS
 	if self.facts.delete?(fact)
 	    self.activations.delete(fact)
 	end
+	self
+    end
+
+    # Delete everything but the rules, then add the default facts
+    # @return [CLIPS]	self
+    def reset
+	self.activations.clear
+	self.agenda.clear
+	self.facts.clear
+
+	self.default_facts.each do |name, fact_set|
+	    fact_set.each {|fact| self.add(*fact)}
+	end
+
 	self
     end
 
