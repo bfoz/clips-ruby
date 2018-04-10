@@ -12,7 +12,13 @@ class CLIPS::Rule
 	@patterns = patterns
 	@salience = salience
 
-	@patterns.push args unless args.empty?
+	args.each do |arg|
+	    if arg.is_a?(Array)
+		@patterns.push arg unless arg.empty?
+	    else
+		@patterns.push [arg]
+	    end
+	end
     end
 
     # Assumes that the patterns have already been checked
