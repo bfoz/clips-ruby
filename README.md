@@ -13,9 +13,10 @@ require 'clips'
 
 clips = CLIPS.new
 clips.add 'rule1', CLIPS::Rule.new(:foo, :actions => :bar)
+clips.add :rule2, CLIPS::Rule.new(:bar) { puts "Rule 2!" }
 clips.add :foo
-...
-clips.run
+
+clips.run	# => "Rule 2!"
 clips.facts	# => #<Set: {[:foo], [:bar]}>
 ```
 
