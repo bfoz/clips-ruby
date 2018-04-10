@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
     spec.name          = "clips"
-    spec.version       = '0'
+    spec.version       = '0.1'
     spec.authors       = ["Brandon Fosdick"]
     spec.email         = ["bfoz@bfoz.net"]
 
