@@ -115,7 +115,7 @@ class CLIPS
 		    return rule_counter if limit.zero?
 		end
 	    end
-	end until self.agenda.empty?
+	end until self.agenda.empty? and self.activations.empty?
 
 	rule_counter
     end

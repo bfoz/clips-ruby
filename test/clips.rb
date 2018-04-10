@@ -171,5 +171,14 @@ RSpec.describe CLIPS do
 	    subject.run
 	    expect(subject.facts).to eq([[:bar], [:baz]].to_set)
 	end
+
+	it 'must trigger chained rules' do
+	    subject.add :rule1, CLIPS::Rule.new(:foo, actions: :bar)
+	    subject.add :rule2, CLIPS::Rule.new(:bar, actions: :baz)
+	    subject.add 'foo'
+
+	    expect(subject.run).to eq(2)
+	    expect(subject.facts).to eq(Set.new([[:foo], [:bar], [:baz]]))
+	end
     end
 end
