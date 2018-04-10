@@ -12,27 +12,27 @@ The C implementation of CLIPS includes a command line shell, however this implem
 require 'clips'
 
 clips = CLIPS.new
-clips.add 'rule1', CLIPS::Rule.new('foo', actions:'bar')
-clips.add 'foo'
+clips.add 'rule1', CLIPS::Rule.new(:foo, :actions => :bar)
+clips.add :foo
 ...
 clips.run
-clips.facts	# => #<Set: {["foo"], ["bar"]}>
+clips.facts	# => #<Set: {[:foo], [:bar]}>
 ```
 
 ## Facts and Rules
 
-Facts are represented by Arrays, and Rules are instances of the Rule class. Rule names can be given as Symbols or Strings, and are converted to Symbols internally.
+Facts are represented by Arrays, and Rules are instances of the Rule class. The first element of a fact must always be a Symbol. Rule names can be given as Symbols or Strings, and are converted to Symbols internally.
 
 ## Default Facts
 
 Named sets of default facts can be added to the engine. When `reset` is called, the default facts are asserted as facts.
 
 ```ruby
-clips.default_facts['my_defaults'] = Set[['foo'], ['bar']]
+clips.default_facts['my_defaults'] = Set[[:foo], [:bar]]
 clips.facts	# => #<Set: {}>
 ...
 clips.reset
-clips.facts	# => #<Set: {["foo"], ["bar"]}>
+clips.facts	# => #<Set: {[:foo], [:bar]}>
 ```
 
 To remove a set of default facts, use the normal Hash `delete` method.

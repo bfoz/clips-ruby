@@ -38,6 +38,7 @@ class CLIPS
 	if (2==fields.length) and fields.last&.is_a?(Rule)
 	    self.rules[fields.first.to_sym] ||= fields.last
 	else	# Assume the item to be a Fact
+	    fields[0] = fields.first.to_sym
 	    # Add the new Fact to the activations list for processing during the next call to run()
 	    self.activations.add(fields)
 	    self.facts.add(fields)
@@ -60,6 +61,7 @@ class CLIPS
     # Remove the given fact
     # @return [CLIPS]
     def delete(*fact)
+    	fact[0] = fact.first.to_sym
 	if self.facts.delete?(fact)
 	    self.activations.delete(fact)
 	end
