@@ -17,6 +17,12 @@ RSpec.describe CLIPS do
 	    expect(subject.facts).to eq(Set[[:foo, 'bar', 5]])
 	end
 
+	it 'must add a fact that has multiple symbol fields' do
+	    subject.add(:foo, :bar)
+	    subject.add(%i{foo bar})
+	    expect(subject.facts).to eq(Set[[:foo, :bar]])
+	end
+
 	it 'must add a similar fact that has multiple fields' do
 	    subject.add("foo", 'bar', 5)
 	    subject.add(:foo, 'baz', 7)

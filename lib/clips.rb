@@ -38,6 +38,7 @@ class CLIPS
 	if (2==fields.length) and fields.last&.is_a?(Rule)
 	    self.rules[fields.first.to_sym] ||= fields.last
 	else	# Assume the item to be a Fact
+	    fields = fields.first if fields.first.is_a?(Array)
 	    fields[0] = fields.first.to_sym
 	    # Add the new Fact to the activations list for processing during the next call to run()
 	    self.activations.add(fields)
