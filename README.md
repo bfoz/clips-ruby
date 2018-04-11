@@ -1,5 +1,7 @@
 # CLIPS for Ruby
 
+[![Build Status](https://travis-ci.org/bfoz/clips-ruby.svg)](https://travis-ci.org/bfoz/clips-ruby)
+
 This is a reimplemtation of the [CLIPS](http://www.clipsrules.net/) engine in Ruby, as well as a DSL for working with CLIPS rules.
 
 The inference engine portion of this implementation has been structured to resemble Ruby's standard Set class. While this doesn't mirror the syntax used by the CLIPS language, it does stay true to the underlying functionality of the engine (ie. no duplicate facts).
