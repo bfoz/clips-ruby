@@ -111,10 +111,7 @@ class CLIPS
 		rule.run!(self)
 		rule_counter += 1
 
-		if limit
-		    limit -= 1
-		    return rule_counter if limit.zero?
-		end
+		return rule_counter if rule_counter == limit
 	    end
 	end until self.agenda.empty? and self.activations.empty?
 

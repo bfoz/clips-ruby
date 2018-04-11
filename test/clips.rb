@@ -186,5 +186,14 @@ RSpec.describe CLIPS do
 	    expect(subject.run).to eq(2)
 	    expect(subject.facts).to eq(Set.new([[:foo], [:bar], [:baz]]))
 	end
+
+	it 'must resepct the limit' do
+	    subject.add :rule1, CLIPS::Rule.new(:foo, actions: :bar)
+	    subject.add :rule2, CLIPS::Rule.new(:bar, actions: :baz)
+	    subject.add 'foo'
+
+	    expect(subject.run(1)).to eq(1)
+	    expect(subject.facts).to eq(Set.new([[:foo], [:bar]]))
+	end
     end
 end
